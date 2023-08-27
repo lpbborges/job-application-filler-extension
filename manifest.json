@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "name": "Resume Filler Extension",
+    "version": "1.0",
+    "description": "Effortlessly complete resumes with a single click using Resume Filler Extension.",
+    "author": "lpbborges",
+    "permissions": ["scripting", "activeTab", "storage"],
+    "action": {
+        "default_popup": "popup/popup.html"
+    }
+}
