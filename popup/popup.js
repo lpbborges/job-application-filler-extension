@@ -60,11 +60,15 @@ function fillInputsOnPage(data) {
     const nameInputs = document.querySelectorAll("input[name*='name'], input[id*='name'], input[placeholder*='name']");
     console.log(nameInputs);
     if (nameInputs.length > 0) {
-        if (nameInputs.length > 1) {
+        if (nameInputs.length > 2) {
             nameInputs[0].value = data.first_name;
+            nameInputs[1].value = data.middle_name;
+            nameInputs[2].value = data.last_name;
+        } else if (nameInputs.length === 2) {
+            nameInputs[0].value = `${data.first_name} ${data.middle_name}`;
             nameInputs[1].value = data.last_name;
         } else {
-            nameInputs[0].value = `${data.first_name} ${data.last_name}`;
+            nameInputs[0].value = `${data.first_name} ${data.middle_name} ${data.last_name}`;
         }
     }
 
