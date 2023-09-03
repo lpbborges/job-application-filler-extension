@@ -3,7 +3,6 @@
     <head>
         <title>Resume Filler</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="popup.css">
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -15,8 +14,8 @@
             crossorigin="anonymous">
         </script>
     </head>
-    <body>
-        <form id="resume_form">
+    <body style="width: 420px">
+        <form id="professional_info_form" class="container-fluid p-3">
             <div class="form-floating mb-3">
                 <input
                     class="form-control"
@@ -97,12 +96,27 @@
                 />
                 <label for="github">Github</label>
             </div>
-            <div>
-                <button id="fill" type="button">Fill</button>
-                <button id="save" type="submit">Save</button>
+            <div class="form-floating mb-3">
+                <textarea 
+                    class="form-control"
+                    id="bio"
+                    name="bio"
+                    placeholder="Tell more about you"
+                    style="height: 80px;"
+                ></textarea>
+                <label for="bio">Bio</label>
+            </div>
+            <div class="d-flex gap-2 align-items-center">
+                <button id="save" class="btn btn-outline-primary" type="submit">Save</button>
+                <button id="fill" class="btn btn-primary" type="button">Fill</button>
+                <span
+                    id="success-message"
+                    class=" text-success visually-hidden"
+                    >
+                    Form successfully saved!
+                </span>
             </div>
         </form>
-
         <script src="popup.js"></script>
     </body>
 </html>

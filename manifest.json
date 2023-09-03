@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Resume Filler Extension",
+    "name": "Job Application Filler Extension",
     "version": "1.0",
-    "description": "Effortlessly complete resumes with a single click using Resume Filler Extension.",
+    "description": "Effortlessly complete job applications with a single click using Job Application Filler Extension.",
     "author": "lpbborges",
     "icons": {
         "16": "images/icon-16.png",

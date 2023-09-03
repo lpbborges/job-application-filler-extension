@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("resume_form");
+    const form = document.getElementById("professional_info_form");
     form.addEventListener("submit", onSubmit);
 
     const fillFormButton = document.getElementById('fill');
     fillFormButton.addEventListener('click', onFill);
 
-    chrome.storage.local.get(['resume']).then(items => {
-        Object.entries(items.resume).forEach(([key, value]) => {
+    chrome.storage.sync.get(['professional_info']).then(items => {
+        if (!items.professional_info) {
+            return;
+        }
+
+        Object.entries(items.professional_info).forEach(([key, value]) => {
             if (key && value) {
                 document.getElementById(key).value = value;
             }
@@ -16,8 +20,9 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function persist(data) {
-    chrome.storage.local.set({resume: data}).then(() => {
+    chrome.storage.sync.set({professional_info: data}).then(() => {
         console.log('Data succesfully saved into local storage.');
+        document.getElementById("success-message").classList.remove("visually-hidden");
     })
 }
 
@@ -31,9 +36,12 @@ function onSubmit(e) {
 
 function parseFormValuesToObject(form) {
     const data = {};
-
+    console.log(form.elements);
     for (const element of form.elements) {
-        if (element.tagName === "INPUT" && element.type !== "submit") {
+        if (
+            (element.tagName === "INPUT" || element.tagName === "TEXTAREA")
+            && element.type !== "submit")
+        {
             data[element.name] = element.value;
         }
     }
@@ -42,7 +50,7 @@ function parseFormValuesToObject(form) {
 }
 
 function onFill() {
-    const form = document.getElementById('resume_form');
+    const form = document.getElementById('professional_info_form');
     const formData = parseFormValuesToObject(form);
 
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
@@ -83,7 +91,6 @@ function fillInputsOnPage(data) {
     }
 
     const birthDayInput = document.querySelector("input[type='date'], input[id*=birth], input[name*='birth']")
-    console.log(birthDayInput)
     if (birthDayInput) {
         birthDayInput.value = data.birth_day;
     }
@@ -96,6 +103,11 @@ function fillInputsOnPage(data) {
     const githubInput = document.querySelector("input[id*=github],input[name*='github']")
     if (githubInput) {
         githubInput.value = data.github;
+    }
+
+    const bioTextarea = document.querySelector("textarea[id*=bio],textarea[name*='bio']")
+    if (bioTextarea) {
+        bioTextarea.value = data.bio;
     }
 }
 
