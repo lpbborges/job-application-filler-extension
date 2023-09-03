@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Job Application Filler Extension",
-    "version": "1.0",
+    "version": "0.0.1",
     "description": "Effortlessly complete job applications with a single click using Job Application Filler Extension.",
     "author": "lpbborges",
     "icons": {
