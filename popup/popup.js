@@ -66,7 +66,6 @@ function onFill() {
  
 function fillInputsOnPage(data) {
     const nameInputs = document.querySelectorAll("input[name*='name'], input[id*='name'], input[placeholder*='name']");
-    console.log(nameInputs);
     if (nameInputs.length > 0) {
         if (nameInputs.length > 2) {
             nameInputs[0].value = data.first_name;
